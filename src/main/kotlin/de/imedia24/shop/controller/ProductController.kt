@@ -47,4 +47,14 @@ class ProductController(private val productService: ProductService) {
         return ResponseEntity.status(HttpStatus.CREATED).body(addedProduct)
     }
 
+
+    @PatchMapping("/products/{sku}", produces = ["application/json;charset=utf-8"])
+    fun updateProductPartially(
+        @PathVariable("sku") sku: String,
+        @RequestBody productRequest: ProductRequest
+    ): ResponseEntity<ProductResponse> {
+        val updatedProduct = productService.partiallyUpdateProduct(sku, productRequest)
+        return ResponseEntity.ok(updatedProduct!!)
+    }
+
 }

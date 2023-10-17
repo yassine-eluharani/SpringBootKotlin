@@ -9,20 +9,20 @@ import javax.persistence.Id
 import javax.persistence.Table
 
 @Entity
-@Table(name = "PRODUCTS")
+@Table(name = "products")
 data class ProductEntity(
     @Id
     @Column(name = "sku", nullable = false)
     val sku: String,
 
     @Column(name = "name", nullable = false)
-    val name: String,
+    var name: String,
 
     @Column(name = "description")
-    val description: String? = null,
+    var description: String? = null,
 
     @Column(name = "price", nullable = false)
-    val price: BigDecimal,
+    var price: BigDecimal,
 
     @UpdateTimestamp
     @Column(name = "created_at", nullable = false)

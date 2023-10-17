@@ -32,5 +32,17 @@ class ProductService(private val productRepository: ProductRepository) {
         return savedProduct.toProductResponse()
     }
 
+
+    fun partiallyUpdateProduct(sku: String, productRequest: ProductRequest): ProductResponse? {
+        val existingProduct = productRepository.findBySku(sku) ?: return null
+
+        productRequest.name?.let { existingProduct.name = it }
+        productRequest.description?.let { existingProduct.description = it }
+        productRequest.price?.let { existingProduct.price = it }
+
+        val updatedProduct = productRepository.save(existingProduct)
+        return updatedProduct.toProductResponse()
+    }
+
 }
 
