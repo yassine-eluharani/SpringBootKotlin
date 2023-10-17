@@ -7,14 +7,17 @@ import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import javax.websocket.server.PathParam
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiOperation
 
 @RestController
+@Api(tags = ["Product API"])
 class ProductController(private val productService: ProductService) {
 
     private val logger = LoggerFactory.getLogger(ProductController::class.java)!!
 
     @GetMapping("/products/{sku}", produces = ["application/json;charset=utf-8"])
+    @ApiOperation("Get product by SKU")
     fun findProductsBySku(
         @PathVariable("sku") sku: String
     ): ResponseEntity<ProductResponse> {
@@ -30,6 +33,7 @@ class ProductController(private val productService: ProductService) {
     }
 
     @GetMapping("/products", produces = ["application/json;charset=utf-8"])
+    @ApiOperation("Get list of products by list of SKU")
     fun findProductsBySkus(
         @RequestParam("skus") skus: List<String>
     ): ResponseEntity<List<ProductResponse>> {
@@ -42,13 +46,14 @@ class ProductController(private val productService: ProductService) {
         }
     }
     @PostMapping("/products", produces = ["application/json;charset=utf-8"])
+    @ApiOperation("Add a new Product")
     fun addProduct(@RequestBody productRequest: ProductRequest): ResponseEntity<ProductResponse> {
         val addedProduct = productService.addProduct(productRequest)
         return ResponseEntity.status(HttpStatus.CREATED).body(addedProduct)
     }
 
-
     @PatchMapping("/products/{sku}", produces = ["application/json;charset=utf-8"])
+    @ApiOperation("Update Product by sku")
     fun updateProductPartially(
         @PathVariable("sku") sku: String,
         @RequestBody productRequest: ProductRequest
