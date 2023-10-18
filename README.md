@@ -1,16 +1,31 @@
-# iMedia24 Coding challenge
+# Swagger 
+## Swagger-url
+Swagger ui
+```
+http://localhost:8080/swagger-ui/
+``` 
+springfox apps-docs
+```
+http://localhost:8080/v2/api-docs
+``` 
 
-### Reference Documentation
-For further reference, please consider the following sections:
+# Docker
+## Build app
+Build with gradle
+```
+gradle build
+```
+Or try the graddle-wrapper
+```
+./gradlew build
+```
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Official Kotlin documentation](https://kotlinlang.org/docs/home.html)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.4.3/gradle-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.4.3/gradle-plugin/reference/html/#build-image)
-* [Flyway database migration tool](https://flywaydb.org/documentation/)
+## To create an image from our Dockerfile:
+```
+docker build --tag=product-api:latest .
+```
 
-### Additional Links
-These additional references should also help you:
-
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
-
+## Run the container from our image
+```
+docker run -p8080:8080 product-api:latest
+```

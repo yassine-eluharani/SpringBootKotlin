@@ -1,4 +1,5 @@
-FROM openjdk:11.0.12-jdk-slim
-VOLUME /tmp
-COPY target/*.jar productAPI.jar
-ENTRYPOINT ["java", "-jar", "/productAPI.jar"]
+FROM adoptopenjdk:11-jre-hotspot
+WORKDIR /app
+COPY build/libs/shop-0.0.1-SNAPSHOT.jar app.jar
+EXPOSE 8080
+CMD ["java", "-jar", "app.jar"]
