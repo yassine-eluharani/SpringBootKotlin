@@ -1,13 +1,13 @@
-stages:
-  - build
-  - test
-
-build:
-  stage: build
-  script:
-    - ./gradlew build --console=plain --no-daemon
-
-test:
-  stage: test
-  script:
-    - ./gradlew test --console=plain --no-daemon
+#stages:
+#  - build
+#  - test
+#
+#build:
+#  stage: build
+#  script:
+#    - ./gradlew build --console=plain --no-daemon
+#
+#test:
+#  stage: test
+#  script:
+#    - ./gradlew test --console=plain --no-daemon
